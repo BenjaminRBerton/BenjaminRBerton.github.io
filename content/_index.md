@@ -11,7 +11,7 @@ showcase:
   interval: 8000
   slides:
     - title: "Exoplanet Explorer"
-      eyebrow: "Research and teaching through play"
+      eyebrow: "Research and teaching"
       summary: "An educational videogame in which learners coordinate autonomous rovers and drones while experiencing human–autonomy teaming configurations directly."
       media_type: "youtube"
       media_id: "nd30w3JyyPI"
