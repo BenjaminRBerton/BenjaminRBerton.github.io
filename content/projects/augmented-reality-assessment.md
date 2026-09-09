@@ -82,6 +82,10 @@ Blink analysis was also developed in-house. A convolutional neural network proce
 
 {{< image src="/images/projects/augmented-reality/blinks.gif" alt="Animated development interface showing a neural network classifying Pupil Labs eye-camera images as open eyes, complete blinks, or incomplete blinks" caption="The in-house CNN classifying eye-camera images into open-eye, complete-blink, and incomplete-blink categories. This demonstration shows my own eyes; no participant recording is displayed." >}}
 
+The trained model and supporting analysis code are available in the [blink-analysis repository](https://github.com/BenjaminRBerton/blink-analysis).
+
+{{< button href="https://github.com/BenjaminRBerton/blink-analysis" label="View the blink-analysis source" external="true" >}}
+
 ## 05 — Quantifying visual clutter
 
 To examine how virtual information changes the visual scene, the HMD recording was superimposed on the operator's point-of-view video. A video-processing workflow then calculated feature congestion, edge density, and subband entropy for each frame. A separate active-pixel measure estimated how much of each frame was occupied by opaque virtual content.
@@ -99,6 +103,10 @@ The reusable analysis pipeline is available in the [video visual clutter reposit
 Eye tracking through an HMD is itself an instrumentation problem. A remote tracker cannot reliably observe eyes through the visor, while the embedded HoloLens tracker did not provide the sampling rate or blink and pupil measures required by the protocol. The solution adapted 120 Hz binocular Pupil Labs glasses to the HoloLens 2 and retained the same glasses in the no-HMD condition for metrological consistency.
 
 An inertial sensor captured head rotation in parallel. Together, gaze and head data supported measures such as fixation count and duration, saccade distance, visual path length, shifts between the display and environment, unexpected-event detection, and eye–head coordination.
+
+The machine-learning model and analysis code used to identify gaze shifts are available in the [gaze-shift-analysis repository](https://github.com/BenjaminRBerton/gaze-shift-analysis).
+
+{{< button href="https://github.com/BenjaminRBerton/gaze-shift-analysis" label="View the gaze-shift source" external="true" >}}
 
 ## 07 — Discussion
 

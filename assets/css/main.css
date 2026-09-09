@@ -417,6 +417,172 @@ pre code {
   margin-bottom: 0;
 }
 
+.home-feature-carousel {
+  overflow: hidden;
+  border: 1px solid var(--border);
+  background: var(--surface);
+}
+
+.home-feature-carousel__viewport {
+  display: flex;
+  overflow-x: auto;
+  overscroll-behavior-inline: contain;
+  scroll-snap-type: inline mandatory;
+  scrollbar-width: none;
+}
+
+.home-feature-carousel__viewport::-webkit-scrollbar {
+  display: none;
+}
+
+.home-feature-slide {
+  display: grid;
+  min-width: 100%;
+  height: clamp(32rem, 39vw, 38rem);
+  grid-template-columns: minmax(0, 1.65fr) minmax(18rem, 0.75fr);
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+}
+
+.home-feature-slide__media {
+  overflow: hidden;
+  min-width: 0;
+  background: #111713;
+}
+
+.home-feature-slide__media iframe,
+.home-feature-slide__media img,
+.home-feature-slide__media video {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  object-fit: contain;
+}
+
+.home-feature-slide__media--contain {
+  background: #fff;
+}
+
+.home-feature-youtube {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.home-feature-youtube button {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  display: grid;
+  width: 4.5rem;
+  height: 4.5rem;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  place-items: center;
+  color: #fff;
+  background: var(--accent);
+  box-shadow: 0 0.5rem 1.5rem rgb(0 0 0 / 35%);
+  cursor: pointer;
+  transform: translate(-50%, -50%);
+  transition: background 160ms ease, transform 160ms ease;
+}
+
+.home-feature-youtube button:hover {
+  background: var(--accent-dark);
+  transform: translate(-50%, -50%) scale(1.06);
+}
+
+.home-feature-youtube button span {
+  margin-left: 0.2rem;
+  font-size: 1.65rem;
+}
+
+.home-feature-video-pair {
+  display: grid;
+  width: 100%;
+  height: 100%;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: center;
+  gap: 1px;
+  background: #111713;
+}
+
+.home-feature-video-pair__pane {
+  position: relative;
+  overflow: hidden;
+  min-width: 0;
+  height: 100%;
+  background: #111713;
+}
+
+.home-feature-video-pair__pane > span {
+  position: absolute;
+  z-index: 1;
+  top: var(--spacing-2);
+  left: var(--spacing-2);
+  padding: 0.25rem 0.5rem;
+  color: #fff;
+  background: rgb(17 23 19 / 78%);
+  font-family: var(--font-sans);
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+.home-feature-slide__copy {
+  display: flex;
+  padding: clamp(var(--spacing-3), 3vw, var(--spacing-5));
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.home-feature-slide__copy h3 {
+  margin-bottom: var(--spacing-2);
+  font-family: var(--font-serif);
+  font-size: clamp(2rem, 3.5vw, 3.1rem);
+  font-weight: 500;
+}
+
+.home-feature-slide__copy > p:not(.eyebrow) {
+  margin-top: 0;
+  color: var(--muted);
+  font-size: 1.12rem;
+}
+
+.home-feature-slide__copy .button {
+  margin-top: var(--spacing-2);
+}
+
+.home-feature-carousel__controls {
+  margin: 0;
+  padding: 0.8rem var(--spacing-3);
+  border-top: 1px solid var(--border);
+  background: var(--background);
+}
+
+.home-feature-carousel__status {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-2);
+}
+
+.carousel__controls .home-feature-carousel__toggle {
+  padding: 0.25rem 0.55rem;
+  border: 1px solid var(--border);
+  color: var(--muted);
+  font-size: 0.88rem;
+  font-weight: 400;
+}
+
+.carousel__controls .home-feature-carousel__toggle:hover {
+  border-color: var(--foreground);
+  color: var(--foreground);
+}
+
 .section-heading {
   display: flex;
   margin-bottom: var(--spacing-4);
@@ -1034,6 +1200,15 @@ figcaption {
     grid-template-columns: 1fr;
   }
 
+  .home-feature-slide {
+    height: auto;
+    grid-template-columns: 1fr;
+  }
+
+  .home-feature-slide__media {
+    aspect-ratio: 16 / 9;
+  }
+
   .project-hero__media {
     grid-row: 1;
   }
@@ -1128,6 +1303,19 @@ figcaption {
 
   .carousel__slide img {
     height: min(58vh, 32rem);
+  }
+
+  .home-feature-slide__copy {
+    padding: var(--spacing-4) var(--spacing-3);
+  }
+
+  .home-feature-carousel__controls {
+    padding-inline: var(--spacing-2);
+  }
+
+  .home-feature-carousel__status {
+    flex-direction: column;
+    gap: 0.2rem;
   }
 }
 

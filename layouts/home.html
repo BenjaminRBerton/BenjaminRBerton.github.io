@@ -17,6 +17,7 @@
 </section>
 
 {{ with .Params.showcase }}
+{{ $slideCount := len .slides }}
 <section class="home-section home-showcase page-shell" aria-labelledby="project-showcase-heading">
   <div class="home-showcase__heading">
     <div>
@@ -25,7 +26,97 @@
       {{ with .intro }}<p class="lede">{{ . }}</p>{{ end }}
     </div>
   </div>
-  {{ partial "youtube-embed.html" (dict "id" .video_id "title" .video_title "caption" .caption) }}
+  <div
+    class="home-feature-carousel"
+    data-carousel
+    data-carousel-loop
+    data-carousel-autoplay="{{ .interval | default 8000 }}"
+    aria-label="Featured projects"
+    aria-roledescription="carousel">
+    <div class="home-feature-carousel__viewport" data-carousel-viewport tabindex="0">
+      {{ range $index, $slide := .slides }}
+        <article
+          class="home-feature-slide"
+          data-carousel-slide
+          role="group"
+          aria-roledescription="slide"
+          aria-label="{{ add $index 1 }} of {{ $slideCount }}: {{ $slide.title }}">
+          <div class="home-feature-slide__media{{ if eq $slide.media_fit "contain" }} home-feature-slide__media--contain{{ end }}">
+            {{ if eq $slide.media_type "youtube" }}
+              <div
+                class="home-feature-youtube"
+                data-youtube-lite
+                data-youtube-id="{{ $slide.media_id }}"
+                data-youtube-title="{{ $slide.media_title }}">
+                <img
+                  src="{{ strings.TrimPrefix "/" $slide.media_poster | relURL }}"
+                  alt="{{ $slide.media_alt }}"
+                  loading="{{ if eq $index 0 }}eager{{ else }}lazy{{ end }}">
+                <button type="button" aria-label="Play {{ $slide.media_title }}">
+                  <span aria-hidden="true">▶</span>
+                </button>
+              </div>
+            {{ else if eq $slide.media_type "paired_video" }}
+              <div class="home-feature-video-pair" data-feature-video-pair>
+                <div class="home-feature-video-pair__pane">
+                  <span>{{ $slide.media_left_label }}</span>
+                  <video
+                    src="{{ strings.TrimPrefix "/" $slide.media_left_src | relURL }}"
+                    poster="{{ strings.TrimPrefix "/" $slide.media_left_poster | relURL }}"
+                    muted
+                    loop
+                    playsinline
+                    preload="metadata"
+                    controls
+                    data-feature-video></video>
+                </div>
+                <div class="home-feature-video-pair__pane">
+                  <span>{{ $slide.media_right_label }}</span>
+                  <video
+                    src="{{ strings.TrimPrefix "/" $slide.media_right_src | relURL }}"
+                    poster="{{ strings.TrimPrefix "/" $slide.media_right_poster | relURL }}"
+                    muted
+                    loop
+                    playsinline
+                    preload="metadata"
+                    data-feature-video></video>
+                </div>
+              </div>
+            {{ else if eq $slide.media_type "iframe" }}
+              <iframe
+                src="{{ strings.TrimPrefix "/" $slide.media_src | relURL }}{{ with $slide.media_query }}{{ . }}{{ end }}"
+                title="{{ $slide.media_title }}"
+                loading="lazy"
+                allowfullscreen></iframe>
+            {{ else }}
+              <img
+                src="{{ strings.TrimPrefix "/" $slide.media_src | relURL }}"
+                alt="{{ $slide.media_alt }}"
+                loading="{{ if eq $index 0 }}eager{{ else }}lazy{{ end }}">
+            {{ end }}
+          </div>
+          <div class="home-feature-slide__copy">
+            {{ with $slide.eyebrow }}<p class="eyebrow">{{ . }}</p>{{ end }}
+            <h3>{{ $slide.title }}</h3>
+            {{ with $slide.summary }}<p>{{ . }}</p>{{ end }}
+            <a class="button" href="{{ strings.TrimPrefix "/" $slide.href | relURL }}">
+              {{ $slide.cta | default "Discover more" }} →
+            </a>
+          </div>
+        </article>
+      {{ end }}
+    </div>
+    <div class="carousel__controls home-feature-carousel__controls" data-carousel-controls hidden>
+      <button type="button" data-carousel-previous aria-label="Show previous featured project">← Previous</button>
+      <div class="home-feature-carousel__status">
+        <p class="carousel__status" aria-live="polite" aria-atomic="true">
+          <span data-carousel-current>1</span> / {{ $slideCount }}
+        </p>
+        <button class="home-feature-carousel__toggle" type="button" data-carousel-toggle>Pause rotation</button>
+      </div>
+      <button type="button" data-carousel-next aria-label="Show next featured project">Next →</button>
+    </div>
+  </div>
 </section>
 {{ end }}
 
