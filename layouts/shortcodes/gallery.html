@@ -1,0 +1,17 @@
+{{- $images := split (.Get "images") "|" -}}
+{{- $alts := split (.Get "alts") "|" -}}
+{{- $captions := split (.Get "captions") "|" -}}
+{{- $fit := .Get "fit" | default "cover" -}}
+{{- $columns := .Get "columns" | default "2" -}}
+<div class="gallery{{ if eq $fit "contain" }} gallery--contain{{ end }}{{ if eq $columns "1" }} gallery--single{{ end }}" aria-label="Image gallery">
+  {{- range $index, $src := $images }}
+    {{- $alt := printf "Gallery image %d" (add $index 1) -}}
+    {{- if lt $index (len $alts) }}{{ $alt = index $alts $index }}{{ end -}}
+    <figure>
+      <img src="{{ $src | strings.TrimSpace | strings.TrimPrefix "/" | relURL }}" alt="{{ $alt | strings.TrimSpace }}" loading="lazy">
+      {{- if lt $index (len $captions) -}}
+        {{- with (index $captions $index | strings.TrimSpace) }}<figcaption>{{ . }}</figcaption>{{ end -}}
+      {{- end }}
+    </figure>
+  {{- end }}
+</div>

@@ -1,0 +1,19 @@
+{{ define "main" }}
+<div class="page-shell">
+  <header class="page-header page-header--split">
+    <div>
+      <p class="eyebrow">Portfolio</p>
+      <h1>{{ .Title }}</h1>
+    </div>
+    {{ with .Content }}<div class="page-intro prose">{{ . }}</div>{{ end }}
+  </header>
+  <div class="project-grid project-grid--all">
+    {{ range (.Pages.ByParam "year").Reverse }}
+      {{ partial "project-card.html" . }}
+    {{ else }}
+      <p>No projects have been added yet.</p>
+    {{ end }}
+  </div>
+</div>
+{{ end }}
+

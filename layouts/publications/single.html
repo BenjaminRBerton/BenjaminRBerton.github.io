@@ -1,0 +1,27 @@
+{{ define "main" }}
+<article class="page-shell publication-page">
+  <header class="page-header">
+    <p class="eyebrow">Publication · {{ .Params.year | default (.Date.Format "2006") }}</p>
+    <h1>{{ .Title }}</h1>
+    {{ with .Params.authors }}<p class="lede authors">{{ delimit . ", " }}</p>{{ end }}
+    {{ with .Params.journal }}<p class="venue">{{ . }}</p>{{ end }}
+    <div class="button-row">
+      {{ with .Params.doi }}<a class="button" href="https://doi.org/{{ . }}">View DOI ↗</a>{{ end }}
+      {{ with .Params.publication_url }}<a class="button" href="{{ . }}">View publication ↗</a>{{ end }}
+      {{ with .Params.pdf }}<a class="button button--quiet" href="{{ strings.TrimPrefix "/" . | relURL }}">Download PDF</a>{{ end }}
+    </div>
+  </header>
+  <div class="prose narrow-content">{{ .Content }}</div>
+
+  {{ with .Params.related_projects }}
+  <section class="related" aria-labelledby="related-projects-heading">
+    <h2 id="related-projects-heading">Related projects</h2>
+    <div class="project-grid">
+      {{ range . }}
+        {{ with site.GetPage (printf "/projects/%s" .) }}{{ partial "project-card.html" . }}{{ end }}
+      {{ end }}
+    </div>
+  </section>
+  {{ end }}
+</article>
+{{ end }}

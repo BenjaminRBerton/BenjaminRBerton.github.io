@@ -1,0 +1,25 @@
+{{- $images := split (.Get "images") "|" -}}
+{{- $alts := split (.Get "alts") "|" -}}
+{{- $captions := split (.Get "captions") "|" -}}
+{{- $label := .Get "label" | default "Image carousel" -}}
+<section class="content-carousel" data-carousel aria-label="{{ $label }}">
+  <div class="carousel__viewport" data-carousel-viewport tabindex="0">
+    {{- range $index, $src := $images }}
+      {{- $alt := printf "Carousel image %d" (add $index 1) -}}
+      {{- if lt $index (len $alts) }}{{ $alt = index $alts $index }}{{ end -}}
+      <figure class="carousel__slide" data-carousel-slide>
+        <img src="{{ $src | strings.TrimSpace | strings.TrimPrefix "/" | relURL }}" alt="{{ $alt | strings.TrimSpace }}" loading="lazy">
+        {{- if lt $index (len $captions) -}}
+          {{- with (index $captions $index | strings.TrimSpace) }}<figcaption>{{ . }}</figcaption>{{ end -}}
+        {{- end }}
+      </figure>
+    {{- end }}
+  </div>
+  <div class="carousel__controls" data-carousel-controls hidden>
+    <button type="button" data-carousel-previous aria-label="Show previous image">← Previous</button>
+    <p class="carousel__status" aria-live="polite">
+      <span data-carousel-current>1</span> / {{ len $images }}
+    </p>
+    <button type="button" data-carousel-next aria-label="Show next image">Next →</button>
+  </div>
+</section>

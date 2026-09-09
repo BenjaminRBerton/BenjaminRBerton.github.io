@@ -1,0 +1,90 @@
+{{ define "main" }}
+<article>
+  <header class="project-hero page-shell">
+    <div class="project-hero__copy">
+      <p class="eyebrow">{{ .Params.project_type | default "Project" }}{{ with .Params.year }} · {{ . }}{{ end }}</p>
+      <h1>{{ .Title }}</h1>
+      {{ with .Params.subtitle }}<p class="lede">{{ . }}</p>{{ end }}
+      <div class="button-row">
+        {{ with .Params.external_url }}<a class="button{{ if $.Params.external_emphasis }} button--large{{ end }}" href="{{ . }}">{{ $.Params.external_label | default "Launch project" }}{{ if not $.Params.external_emphasis }} ↗{{ end }}</a>{{ end }}
+        {{ with .Params.publication_url }}<a class="button{{ if $.Params.external_url }} button--quiet{{ end }}" href="{{ . }}">Read publication ↗</a>{{ end }}
+        {{ with .Params.poster_url }}<a class="button button--quiet" href="{{ strings.TrimPrefix "/" . | relURL }}">View poster</a>{{ end }}
+        {{ with .Params.slides_url }}<a class="button button--quiet" href="{{ strings.TrimPrefix "/" . | relURL }}">View slides</a>{{ end }}
+        {{ with .Params.github_url }}<a class="button button--quiet" href="{{ . }}">{{ $.Params.github_label | default "View source" }} ↗</a>{{ end }}
+        {{ with .Params.pdf_url }}<a class="button button--quiet" href="{{ strings.TrimPrefix "/" . | relURL }}">View PDF</a>{{ end }}
+      </div>
+    </div>
+    {{ with .Params.hero_image }}
+      <figure class="project-hero__media{{ if eq $.Params.hero_fit "contain" }} project-hero__media--contain{{ end }}">
+        <img src="{{ strings.TrimPrefix "/" . | relURL }}" alt="{{ $.Params.hero_alt | default (printf "%s project image" $.Title) }}" style="object-position: {{ $.Params.hero_position | default "center" }}; object-fit: {{ $.Params.hero_fit | default "cover" }};">
+      </figure>
+    {{ end }}
+  </header>
+
+  <div class="project-layout{{ if .Params.story_layout }} project-layout--story{{ end }} page-shell">
+    <aside class="project-facts" aria-label="Project details">
+      <dl>
+        {{ with .Params.role }}<div><dt>Role</dt><dd>{{ . }}</dd></div>{{ end }}
+        {{ with .Params.status }}<div><dt>Status</dt><dd>{{ . }}</dd></div>{{ end }}
+        {{ with .Params.year }}<div><dt>Year</dt><dd>{{ . }}</dd></div>{{ end }}
+        {{ with .Params.tags }}<div><dt>Topics</dt><dd>{{ delimit . ", " }}</dd></div>{{ end }}
+      </dl>
+    </aside>
+    <div class="prose project-content{{ if .Params.story_layout }} project-content--story{{ end }}">
+      {{ .Content }}
+    </div>
+  </div>
+
+  {{ with .Params.downloads }}
+  <section class="project-band" aria-labelledby="downloads-heading">
+    <div class="page-shell">
+      <p class="eyebrow">Releases</p>
+      <h2 id="downloads-heading">Download</h2>
+      <div class="download-grid">
+        {{ with .windows }}
+          <div class="download-item"><h3>Windows</h3><a class="button" href="{{ . }}">Download Windows installer</a></div>
+        {{ end }}
+        {{ with .linux }}
+          <div class="download-item"><h3>Linux</h3><a class="button" href="{{ . }}">Download Linux .zip</a></div>
+        {{ end }}
+        <div class="download-item">
+          <h3>macOS</h3>
+          {{ with .macos }}<a class="button" href="{{ . }}">Download for macOS</a>{{ else }}<p class="muted">Coming later</p>{{ end }}
+        </div>
+      </div>
+      <p class="download-note">Release files are hosted externally and are not stored in this website repository.</p>
+    </div>
+  </section>
+  {{ end }}
+
+  {{ $relatedProjects := .Params.related_projects }}
+  {{ $relatedPubs := .Params.related_publications }}
+  {{ $relatedConfs := .Params.related_conferences }}
+  {{ if or $relatedProjects $relatedPubs $relatedConfs }}
+  <section class="related page-shell" aria-labelledby="related-heading">
+    <h2 id="related-heading">Related work</h2>
+    {{ with $relatedProjects }}
+      <div class="project-grid project-grid--related">
+        {{ range . }}
+          {{ with site.GetPage (printf "/projects/%s" .) }}{{ partial "project-card.html" . }}{{ end }}
+        {{ end }}
+      </div>
+    {{ end }}
+    {{ with $relatedPubs }}
+      <div class="research-list">
+        {{ range . }}
+          {{ with site.GetPage (printf "/publications/%s" .) }}{{ partial "publication-entry.html" . }}{{ end }}
+        {{ end }}
+      </div>
+    {{ end }}
+    {{ with $relatedConfs }}
+      <div class="research-list">
+        {{ range . }}
+          {{ with site.GetPage (printf "/conferences/%s" .) }}{{ partial "conference-entry.html" . }}{{ end }}
+        {{ end }}
+      </div>
+    {{ end }}
+  </section>
+  {{ end }}
+</article>
+{{ end }}

@@ -1,0 +1,13 @@
+{{ define "main" }}
+<article class="page-shell prose-page">
+  <header class="page-header">
+    <p class="eyebrow">{{ .Type | humanize }}</p>
+    <h1>{{ .Title }}</h1>
+    {{ with .Params.subtitle }}<p class="lede">{{ . }}</p>{{ end }}
+  </header>
+  <div class="prose">
+    {{ .Content }}
+  </div>
+</article>
+{{ end }}
+

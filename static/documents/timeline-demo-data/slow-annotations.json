@@ -1,0 +1,10 @@
+{
+  "csv": "slow.csv",
+  "annotations": [
+    {
+      "id": 1,
+      "relSec": 108.445282,
+      "label": "Error: Flaps"
+    }
+  ]
+}

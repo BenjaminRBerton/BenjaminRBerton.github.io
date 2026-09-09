@@ -1,0 +1,32 @@
+{{ define "main" }}
+<article class="timeline-demo-page">
+  <header class="timeline-demo-intro page-shell">
+    <div>
+      <p class="eyebrow">Interactive research demonstration</p>
+      <h1>{{ .Title }}</h1>
+      {{ with .Params.subtitle }}<p class="lede">{{ . }}</p>{{ end }}
+    </div>
+    <div class="timeline-demo-guide">
+      <p><strong>How to explore</strong></p>
+      <ol>
+        <li>Switch between support, autonomous slow, and autonomous fast.</li>
+        <li>Play or seek the paired cockpit and TARS-interface recordings; the red playhead follows them through the timeline.</li>
+        <li>Use the side tabs to inspect pilot actions, gaze, aircraft control, flight state, and agent actions.</li>
+      </ol>
+      <p class="muted">This privacy-safe demonstration was recorded by the researcher acting as the participant. It contains no research-participant data and is illustrative rather than part of the reported sample. The explorer is best viewed on a laptop or larger screen.</p>
+      <div class="button-row">
+        <a class="button button--quiet" href="{{ "projects/human-oversight-adaptable-autonomy/" | relURL }}">← Return to project</a>
+        <a class="button" href="{{ "documents/timeline.html" | relURL }}">Open full-screen viewer ↗</a>
+      </div>
+    </div>
+  </header>
+  <div class="timeline-embed-shell">
+    <iframe
+      class="timeline-embed"
+      src="{{ "documents/timeline.html" | relURL }}"
+      title="Interactive human-in-the-loop simulation data timeline"
+      loading="eager"
+      allowfullscreen></iframe>
+  </div>
+</article>
+{{ end }}

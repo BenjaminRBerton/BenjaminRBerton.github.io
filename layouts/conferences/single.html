@@ -1,0 +1,28 @@
+{{ define "main" }}
+<article class="page-shell publication-page">
+  <header class="page-header">
+    <p class="eyebrow">{{ .Params.presentation_type | default "Presentation" }} · {{ .Params.year | default (.Date.Format "2006") }}</p>
+    <h1>{{ .Title }}</h1>
+    {{ with .Params.authors }}<p class="lede authors">{{ delimit . ", " }}</p>{{ end }}
+    <p class="venue">{{ with .Params.event }}{{ . }}{{ end }}{{ with .Params.location }} · {{ . }}{{ end }}</p>
+    <div class="button-row">
+      {{ with .Params.poster_url }}<a class="button" href="{{ . }}">View poster ↗</a>{{ end }}
+      {{ with .Params.slides_url }}<a class="button button--quiet" href="{{ . }}">View slides ↗</a>{{ end }}
+      {{ with .Params.publication_url }}<a class="button button--quiet" href="{{ . }}">View publication ↗</a>{{ end }}
+    </div>
+  </header>
+  {{ with .Params.image }}<img class="feature-image" src="{{ strings.TrimPrefix "/" . | relURL }}" alt="{{ $.Params.image_alt | default (printf "%s presentation image" $.Title) }}">{{ end }}
+  <div class="prose narrow-content">{{ .Content }}</div>
+
+  {{ with .Params.related_projects }}
+  <section class="related" aria-labelledby="related-projects-heading">
+    <h2 id="related-projects-heading">Related projects</h2>
+    <div class="project-grid">
+      {{ range . }}
+        {{ with site.GetPage (printf "/projects/%s" .) }}{{ partial "project-card.html" . }}{{ end }}
+      {{ end }}
+    </div>
+  </section>
+  {{ end }}
+</article>
+{{ end }}

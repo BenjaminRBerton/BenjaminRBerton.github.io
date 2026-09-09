@@ -1,0 +1,15 @@
+<article class="research-entry">
+  <p class="research-entry__year">{{ .Params.year | default (.Date.Format "2006") }}</p>
+  <div>
+    <h3>{{ .Title }}</h3>
+    {{ with .Params.authors }}<p class="authors">{{ delimit . ", " }}</p>{{ end }}
+    <p class="venue">
+      {{ with .Params.event }}{{ . }}{{ end }}{{ with .Params.location }} · {{ . }}{{ end }}
+    </p>
+    <div class="text-links">
+      {{ with .Params.poster_url }}<a href="{{ . }}">Poster ↗</a>{{ end }}
+      {{ with .Params.slides_url }}<a href="{{ . }}">Slides ↗</a>{{ end }}
+      {{ with .Params.publication_url }}<a href="{{ . }}">Publication ↗</a>{{ end }}
+    </div>
+  </div>
+</article>

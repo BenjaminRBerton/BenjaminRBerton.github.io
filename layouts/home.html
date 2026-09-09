@@ -1,0 +1,80 @@
+{{ define "main" }}
+<section class="home-hero page-shell">
+  <div class="home-hero__copy">
+    <p class="eyebrow">{{ site.Params.tagline }}</p>
+    <h1>{{ .Title }}</h1>
+    {{ with .Params.intro }}<p class="home-hero__intro">{{ . }}</p>{{ end }}
+    <div class="button-row">
+      <a class="button" href="{{ "/projects/" | relURL }}">View my work</a>
+      <a class="button button--quiet" href="{{ "/cv/" | relURL }}">View CV</a>
+    </div>
+  </div>
+  {{ with .Params.profile_image }}
+    <div class="home-hero__portrait">
+      <img src="{{ strings.TrimPrefix "/" . | relURL }}" alt="{{ $.Params.profile_image_alt | default (printf "Portrait of %s" $.Title) }}" width="705" height="1085">
+    </div>
+  {{ end }}
+</section>
+
+{{ with .Params.showcase }}
+<section class="home-section home-showcase page-shell" aria-labelledby="project-showcase-heading">
+  <div class="home-showcase__heading">
+    <div>
+      <p class="eyebrow">{{ .eyebrow | default "Project showcase" }}</p>
+      <h2 id="project-showcase-heading">{{ .heading }}</h2>
+      {{ with .intro }}<p class="lede">{{ . }}</p>{{ end }}
+    </div>
+  </div>
+  {{ partial "youtube-embed.html" (dict "id" .video_id "title" .video_title "caption" .caption) }}
+</section>
+{{ end }}
+
+{{ $projects := where site.RegularPages "Section" "projects" }}
+{{ $featuredProjects := where $projects "Params.featured" true }}
+<section class="home-section page-shell" aria-labelledby="projects-heading">
+  <div class="section-heading">
+    <h2 id="projects-heading">Projects</h2>
+    <a href="{{ "/projects/" | relURL }}">All projects →</a>
+  </div>
+  <div class="project-grid">
+    {{ range first 3 ($featuredProjects.ByParam "year").Reverse }}
+      {{ partial "project-card.html" . }}
+    {{ else }}
+      <p>Add a project with <code>featured: true</code> to show it here.</p>
+    {{ end }}
+  </div>
+</section>
+
+{{ $publications := where site.RegularPages "Section" "publications" }}
+{{ $featuredPublications := where $publications "Params.featured" true }}
+<section class="home-section page-shell" aria-labelledby="publications-heading">
+  <div class="section-heading">
+    <h2 id="publications-heading">Publications</h2>
+    <a href="{{ "/publications/" | relURL }}">All publications →</a>
+  </div>
+  <div class="research-list">
+    {{ range first 3 ($featuredPublications.ByParam "year").Reverse }}
+      {{ partial "publication-entry.html" . }}
+    {{ else }}
+      <p>Add a publication with <code>featured: true</code> to show it here.</p>
+    {{ end }}
+  </div>
+</section>
+
+{{ $conferences := where site.RegularPages "Section" "conferences" }}
+{{ $featuredConferences := where $conferences "Params.featured" true }}
+<section class="home-section page-shell" aria-labelledby="presentations-heading">
+  <div class="section-heading">
+    <h2 id="presentations-heading">Presentations</h2>
+    <a href="{{ "/publications/#presentations-heading" | relURL }}">All presentations →</a>
+  </div>
+  <div class="research-list">
+    {{ range first 3 ($featuredConferences.ByParam "year").Reverse }}
+      {{ partial "conference-entry.html" . }}
+    {{ else }}
+      <p>Add a presentation with <code>featured: true</code> to show it here.</p>
+    {{ end }}
+  </div>
+</section>
+
+{{ end }}

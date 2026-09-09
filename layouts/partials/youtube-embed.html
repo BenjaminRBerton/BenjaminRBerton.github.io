@@ -1,0 +1,14 @@
+{{- $id := .id -}}
+{{- $title := .title | default "Embedded YouTube video" -}}
+<figure class="content-video youtube-embed">
+  <div class="youtube-embed__frame">
+    <iframe
+      src="https://www.youtube-nocookie.com/embed/{{ $id }}?rel=0"
+      title="{{ $title }}"
+      loading="lazy"
+      referrerpolicy="strict-origin-when-cross-origin"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+      allowfullscreen></iframe>
+  </div>
+  {{ with .caption }}<figcaption>{{ . }}</figcaption>{{ end }}
+</figure>

@@ -1,0 +1,13 @@
+{{- $autoplay := .Get "autoplay" -}}
+<figure class="content-video">
+  <video
+    {{ if $autoplay }}autoplay loop{{ else }}controls{{ end }}
+    muted
+    playsinline
+    preload="metadata"
+    {{ with .Get "poster" }}poster="{{ strings.TrimPrefix "/" . | relURL }}"{{ end }}>
+    <source src="{{ strings.TrimPrefix "/" (.Get "src") | relURL }}" type="{{ .Get "type" | default "video/mp4" }}">
+    Your browser does not support HTML5 video. <a href="{{ strings.TrimPrefix "/" (.Get "src") | relURL }}">Download the clip</a>.
+  </video>
+  {{ with .Get "caption" }}<figcaption>{{ . }}</figcaption>{{ end }}
+</figure>

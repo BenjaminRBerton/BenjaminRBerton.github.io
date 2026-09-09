@@ -1,0 +1,15 @@
+<footer class="site-footer">
+  <div class="footer-inner">
+    <p>© {{ now.Year }} {{ site.Params.name }}</p>
+    <nav aria-label="Contact links">
+      <ul class="footer-links">
+        {{ with site.Params.github }}<li><a href="{{ . }}">GitHub</a></li>{{ end }}
+        {{ with site.Params.linkedin }}<li><a href="{{ . }}">LinkedIn</a></li>{{ end }}
+        {{ with site.Params.orcid }}<li><a href="{{ . }}">ORCID</a></li>{{ end }}
+        {{ with site.Params.researchgate }}<li><a href="{{ . }}">ResearchGate</a></li>{{ end }}
+        {{ with site.Params.email }}<li><a href="mailto:{{ . }}">Email</a></li>{{ end }}
+        {{ with site.Params.institution }}<li><a href="{{ . }}">{{ site.Params.institutionLabel | default "Institution" }}</a></li>{{ end }}
+      </ul>
+    </nav>
+  </div>
+</footer>

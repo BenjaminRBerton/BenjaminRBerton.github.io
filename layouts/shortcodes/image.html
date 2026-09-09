@@ -1,0 +1,6 @@
+{{- $src := .Get "src" -}}
+{{- $alt := .Get "alt" -}}
+<figure class="content-figure{{ with .Get "class" }} {{ . }}{{ end }}">
+  <img src="{{ strings.TrimPrefix "/" $src | relURL }}" alt="{{ $alt }}" loading="lazy">
+  {{ with .Get "caption" }}<figcaption>{{ . }}</figcaption>{{ end }}
+</figure>

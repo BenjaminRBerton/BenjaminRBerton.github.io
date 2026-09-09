@@ -1,0 +1,13 @@
+<article class="research-entry">
+  <p class="research-entry__year">{{ .Params.year | default (.Date.Format "2006") }}</p>
+  <div>
+    <h3><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
+    {{ with .Params.authors }}<p class="authors">{{ delimit . ", " }}</p>{{ end }}
+    {{ with .Params.journal }}<p class="venue">{{ . }}</p>{{ end }}
+    <div class="text-links">
+      {{ with .Params.doi }}<a href="https://doi.org/{{ . }}">DOI ↗</a>{{ end }}
+      {{ with .Params.publication_url }}<a href="{{ . }}">Publication ↗</a>{{ end }}
+      {{ with .Params.pdf }}<a href="{{ strings.TrimPrefix "/" . | relURL }}">PDF</a>{{ end }}
+    </div>
+  </div>
+</article>

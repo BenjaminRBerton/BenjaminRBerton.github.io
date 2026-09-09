@@ -1,0 +1,25 @@
+{{- $cardImage := .Params.card_image | default .Params.hero_image -}}
+{{- $cardPosition := .Params.card_position | default .Params.hero_position | default "center" -}}
+{{- $cardFit := .Params.card_fit | default .Params.hero_fit | default "cover" -}}
+<article class="project-card">
+  <a class="project-card__image{{ if eq $cardFit "contain" }} project-card__image--contain{{ end }}" href="{{ .RelPermalink }}" tabindex="-1" aria-hidden="true">
+    {{ with $cardImage }}
+      <img src="{{ strings.TrimPrefix "/" . | relURL }}" alt="" loading="lazy" style="object-position: {{ $cardPosition }}; object-fit: {{ $cardFit }};">
+    {{ else }}
+      <span class="image-placeholder">Project image</span>
+    {{ end }}
+  </a>
+  <div class="project-card__body">
+    <div class="item-meta">
+      {{ with .Params.project_type }}<span>{{ . }}</span>{{ end }}
+      {{ with .Params.year }}<span>{{ . }}</span>{{ end }}
+    </div>
+    <h3><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
+    {{ with .Params.summary }}<p>{{ . }}</p>{{ else }}{{ with .Summary }}<p>{{ . }}</p>{{ end }}{{ end }}
+    {{ with .Params.tags }}
+      <ul class="tag-list" aria-label="Topics">
+        {{ range first 4 . }}<li>{{ . }}</li>{{ end }}
+      </ul>
+    {{ end }}
+  </div>
+</article>

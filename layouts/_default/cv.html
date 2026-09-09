@@ -1,0 +1,82 @@
+{{ define "main" }}
+<article class="page-shell cv-page">
+  <header class="page-header cv-header">
+    <div>
+      <p class="eyebrow">Curriculum vitae</p>
+      <h1>{{ site.Params.name }}</h1>
+      {{ with .Params.subtitle }}<p class="lede">{{ . }}</p>{{ end }}
+    </div>
+    {{ with .Params.pdf }}<a class="button button--quiet" href="{{ strings.TrimPrefix "/" . | relURL }}">Download PDF CV</a>{{ end }}
+  </header>
+
+  {{ with .Params.profile }}
+  <section class="cv-section prose">
+    <h2>Profile</h2>
+    <p>{{ . }}</p>
+  </section>
+  {{ end }}
+
+  {{ $education := where site.RegularPages "Section" "education" }}
+  {{ with $education }}
+  <section class="cv-section">
+    <h2>Education</h2>
+    <div class="cv-list">
+      {{ range (.ByParam "year").Reverse }}
+      <article><p class="item-meta">{{ .Params.year }}</p><div><h3>{{ .Title }}</h3>{{ with .Params.institution }}<p>{{ . }}</p>{{ end }}{{ with .Params.summary }}<p class="muted">{{ . }}</p>{{ end }}</div></article>
+      {{ end }}
+    </div>
+  </section>
+  {{ end }}
+
+  {{ $experience := where site.RegularPages "Section" "experience" }}
+  {{ with $experience }}
+  <section class="cv-section">
+    <h2>Research & professional experience</h2>
+    <div class="cv-list">
+      {{ range (.ByParam "start_year").Reverse }}
+      <article><p class="item-meta">{{ .Params.start_year }}–{{ .Params.end_year | default "Present" }}</p><div><h3>{{ .Title }}</h3>{{ with .Params.organization }}<p>{{ . }}</p>{{ end }}{{ with .Content }}<div class="prose compact-prose">{{ . }}</div>{{ end }}</div></article>
+      {{ end }}
+    </div>
+  </section>
+  {{ end }}
+
+  {{ $publications := where site.RegularPages "Section" "publications" }}
+  {{ with $publications }}
+  <section class="cv-section">
+    <h2>Publications</h2>
+    <div class="research-list">{{ range (.ByParam "year").Reverse }}{{ partial "publication-entry.html" . }}{{ end }}</div>
+  </section>
+  {{ end }}
+
+  {{ $conferences := where site.RegularPages "Section" "conferences" }}
+  {{ with $conferences }}
+  <section class="cv-section">
+    <h2>Conference presentations</h2>
+    <div class="research-list">{{ range (.ByParam "year").Reverse }}{{ partial "conference-entry.html" . }}{{ end }}</div>
+  </section>
+  {{ end }}
+
+  {{ $awards := where site.RegularPages "Section" "awards" }}
+  {{ with $awards }}
+  <section class="cv-section">
+    <h2>Awards</h2>
+    <div class="cv-list">
+      {{ range (.ByParam "year").Reverse }}
+      <article><p class="item-meta">{{ .Params.year }}</p><div><h3>{{ .Title }}</h3>{{ with .Params.organization }}<p>{{ . }}</p>{{ end }}</div></article>
+      {{ end }}
+    </div>
+  </section>
+  {{ end }}
+
+  {{ with .Content }}<section class="cv-section prose">{{ . }}</section>{{ end }}
+
+  {{ with .Params.skills }}
+  <section class="cv-section">
+    <h2>Technical skills</h2>
+    <dl class="skills-list">
+      {{ range $group, $items := . }}<div><dt>{{ $group | humanize }}</dt><dd>{{ delimit $items ", " }}</dd></div>{{ end }}
+    </dl>
+  </section>
+  {{ end }}
+</article>
+{{ end }}

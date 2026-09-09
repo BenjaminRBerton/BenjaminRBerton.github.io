@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">Benjamin Rémi Berton — Human Factors and Cognitive Engineering</title>
+  <desc id="desc">A dark green typographic social preview for Benjamin Rémi Berton's research portfolio.</desc>
+  <rect width="1200" height="630" fill="#18201d"/>
+  <rect x="70" y="70" width="1060" height="490" fill="none" stroke="#53635c" stroke-width="2"/>
+  <circle cx="1010" cy="140" r="20" fill="#8ed1c8"/>
+  <text x="115" y="275" fill="#f4f2ed" font-family="Georgia, serif" font-size="76">Benjamin Rémi Berton</text>
+  <text x="120" y="360" fill="#8ed1c8" font-family="system-ui, sans-serif" font-size="27" font-weight="700" letter-spacing="5">HUMAN FACTORS · COGNITIVE ENGINEERING</text>
+  <text x="120" y="416" fill="#b8c4be" font-family="system-ui, sans-serif" font-size="25" letter-spacing="4">AVIATION · HUMAN–AUTONOMY TEAMING</text>
+</svg>

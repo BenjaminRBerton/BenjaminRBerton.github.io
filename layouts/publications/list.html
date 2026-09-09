@@ -1,0 +1,33 @@
+{{ define "main" }}
+<div class="page-shell">
+  <header class="page-header page-header--split">
+    <div>
+      <p class="eyebrow"></p>
+      <h1>{{ .Title }}</h1>
+    </div>
+    {{ with .Content }}<div class="page-intro prose">{{ . }}</div>{{ end }}
+  </header>
+  <section class="research-section" aria-labelledby="publications-heading">
+    <h2 id="publications-heading">Publications</h2>
+    <div class="research-list">
+      {{ range (.Pages.ByParam "year").Reverse }}
+        {{ partial "publication-entry.html" . }}
+      {{ else }}
+        <p>No publications have been added yet.</p>
+      {{ end }}
+    </div>
+  </section>
+
+  {{ $presentations := where site.RegularPages "Section" "conferences" }}
+  <section class="research-section" aria-labelledby="presentations-heading">
+    <h2 id="presentations-heading">Presentations</h2>
+    <div class="research-list">
+      {{ range ($presentations.ByParam "year").Reverse }}
+        {{ partial "conference-entry.html" . }}
+      {{ else }}
+        <p>No presentations have been added yet.</p>
+      {{ end }}
+    </div>
+  </section>
+</div>
+{{ end }}

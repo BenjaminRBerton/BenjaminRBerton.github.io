@@ -1,0 +1,21 @@
+# Hugo output and generated resources
+/public/
+/resources/_gen/
+.hugo_build.lock
+
+# Operating systems and editors
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+.idea/
+.vscode/
+
+# Local environment and temporary files
+.env
+.env.*
+*.tmp
+*.log
+
+# Private/local research source data (public demo derivatives are in static/)
+.local-data/

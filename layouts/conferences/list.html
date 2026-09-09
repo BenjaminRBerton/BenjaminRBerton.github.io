@@ -1,0 +1,19 @@
+{{ define "main" }}
+<div class="page-shell">
+  <header class="page-header page-header--split">
+    <div>
+      <p class="eyebrow">Talks & presentations</p>
+      <h1>{{ .Title }}</h1>
+    </div>
+    {{ with .Content }}<div class="page-intro prose">{{ . }}</div>{{ end }}
+  </header>
+  <div class="research-list">
+    {{ range (.Pages.ByParam "year").Reverse }}
+      {{ partial "conference-entry.html" . }}
+    {{ else }}
+      <p>No presentations have been added yet.</p>
+    {{ end }}
+  </div>
+</div>
+{{ end }}
+
