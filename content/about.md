@@ -7,7 +7,7 @@ subtitle: "Human factors research at the intersection of aviation, cognition, an
 
 ## Biography
 
-I am a PhD candidate in Industrial Engineering at Polytechnique Montréal, specializing in human factors and cognitive engineering. My research asks how autonomous systems can become effective teammates in safety-critical aviation without weakening pilot awareness, authority, or capacity to intervene.
+Currently a PhD candidate in Industrial Engineering at Polytechnique Montréal under the supervision of [Philippe Doyon-Poulin](https://www.polymtl.ca/expertises/en/doyon-poulin-philippe), specializing in human factors and cognitive engineering. My research asks how autonomous systems can become effective teammates in safety-critical aviation without weakening pilot awareness, authority, or capacity to intervene.
 
 I combine coactive design, Interdependence Analysis, cognitive architectures, autonomous-agent prototypes, and human-in-the-loop simulation. This lets me study a concept across several levels: how work is allocated, what teammates need to observe and communicate, how a pilot's attention and reliance change over time, and how the resulting team performs in a flight simulator.
 

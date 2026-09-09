@@ -1,8 +1,8 @@
 ---
 title: "Human–Autonomy Teaming Flight-Deck Simulation Framework"
 subtitle: ""
-date: 2026-07-09
-year: 2026
+date: 2025-07-09
+year: 2025
 project_type: "Doctoral research · simulation framework"
 status: "Ongoing research"
 featured: true
@@ -46,7 +46,7 @@ Interdependence Analysis turns this into a design space. For any task, the human
 
 {{< image src="/images/projects/flight-deck-testbed/workflow.gif" alt="Animated workflow comparing human-performer and TARS-performer allocations across takeoff tasks" caption="Expanding the tree of allocation alternatives generated from Interdependence Analysis: TARS as supporter or as performer." >}}
 
-> The interesting designs can be between the extremes of “pilot alone” and “maximum automation.” Exploring those subtle allocations is important for adaptable automation that adapts to the variability of operational context.
+**The interesting designs can be between the extremes of “pilot alone” and “maximum automation.” Exploring those subtle allocations is important for autonomy that adapts to the variability of operational context.**
 
 ## 02 — Why simulate before testing?
 
@@ -67,7 +67,7 @@ The framework connects four principal components:
 3. **TARS and its interface**, which support or perform allocated takeoff tasks.
 4. **Experiment and analysis services**, which configure allocations, run simulation batches, log network activity in Apache Cassandra, and analyse results.
 
-{{< image src="/images/projects/flight-deck-testbed/framework-overview.webp" alt="HCII presentation diagram showing the cognitive pilot model, X-Plane simulator, TARS, and shared interface connected in a closed loop" caption="The closed-loop architecture presented at HCII 2026." >}}
+{{< image src="/images/projects/flight-deck-testbed/framework_schematic.gif" alt="HCII presentation diagram showing the cognitive pilot model, X-Plane simulator, TARS, and shared interface connected in a closed loop" caption="The closed-loop architecture represented on three laptops." >}}
 
 The components expose their inputs, outputs, and internal states over the network. Because the architecture is modular, the cognitive model can be exchanged for a human pilot while retaining the agent, interface, scenario, and logging infrastructure.
 

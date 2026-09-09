@@ -3,7 +3,7 @@
   <div class="home-hero__copy">
     <p class="eyebrow">{{ site.Params.tagline }}</p>
     <h1>{{ .Title }}</h1>
-    {{ with .Params.intro }}<p class="home-hero__intro">{{ . }}</p>{{ end }}
+    {{ with .Params.intro }}<div class="home-hero__intro">{{ . | markdownify }}</div>{{ end }}
     <div class="button-row">
       <a class="button" href="{{ "/projects/" | relURL }}">View my work</a>
       <a class="button button--quiet" href="{{ "/cv/" | relURL }}">View CV</a>

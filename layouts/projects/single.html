@@ -10,7 +10,7 @@
         {{ with .Params.publication_url }}<a class="button{{ if $.Params.external_url }} button--quiet{{ end }}" href="{{ . }}">Read publication ↗</a>{{ end }}
         {{ with .Params.poster_url }}<a class="button button--quiet" href="{{ strings.TrimPrefix "/" . | relURL }}">View poster</a>{{ end }}
         {{ with .Params.slides_url }}<a class="button button--quiet" href="{{ strings.TrimPrefix "/" . | relURL }}">View slides</a>{{ end }}
-        {{ with .Params.github_url }}<a class="button button--quiet" href="{{ . }}">{{ $.Params.github_label | default "View source" }} ↗</a>{{ end }}
+        {{ with .Params.github_url }}<a class="button button--quiet" href="{{ . }}">{{ $.Params.github_label | default "View source code" }} ↗</a>{{ end }}
         {{ with .Params.pdf_url }}<a class="button button--quiet" href="{{ strings.TrimPrefix "/" . | relURL }}">View PDF</a>{{ end }}
       </div>
     </div>

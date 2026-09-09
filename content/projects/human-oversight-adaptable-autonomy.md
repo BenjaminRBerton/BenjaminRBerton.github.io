@@ -22,7 +22,7 @@ card_image: "/images/projects/human-oversight-adaptable-autonomy/TARS_HITLS_TRAI
 card_position: "center"
 card_fit: "contain"
 external_url: "/projects/human-oversight-adaptable-autonomy/timeline/"
-external_label: "Explore an instrumented HITLS session →"
+external_label: "Explore the data of an experiment session online →"
 external_emphasis: true
 github_url: ""
 publication_url: ""

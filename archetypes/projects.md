@@ -20,7 +20,7 @@ external_url: ""
 external_label: ""
 external_emphasis: false
 github_url: ""
-github_label: "View source"
+github_label: "View source code"
 publication_url: ""
 poster_url: ""
 slides_url: ""
