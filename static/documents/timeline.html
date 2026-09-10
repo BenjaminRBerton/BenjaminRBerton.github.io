@@ -39,6 +39,12 @@
       flex-shrink: 0;
       display: flex;
       align-items: stretch;
+      overflow-x: auto;
+      overflow-y: hidden;
+      overscroll-behavior-x: contain;
+      scrollbar-width: thin;
+      scrollbar-color: #b8c0cc #ffffff;
+      -webkit-overflow-scrolling: touch;
       background: #ffffff;
       border-bottom: 2px solid #c8cdd6;
       height: 40px;
@@ -165,6 +171,12 @@
       flex-shrink: 0;
       display: flex;
       align-items: stretch;
+      overflow-x: auto;
+      overflow-y: hidden;
+      overscroll-behavior-x: contain;
+      scrollbar-width: thin;
+      scrollbar-color: #b8c0cc #ffffff;
+      -webkit-overflow-scrolling: touch;
       background: #ffffff;
       border-bottom: 2px solid #c8cdd6;
       height: 40px;
@@ -183,6 +195,7 @@
       font-weight: 600;
       color: #9aa0ae;
       white-space: nowrap;
+      flex: 0 0 auto;
     }
     .tab-btn:hover { color: #2c3a50; background: #f5f6f8; }
     .tab-btn.active { color: #1e5a9e; border-bottom-color: #1e5a9e; }
@@ -315,16 +328,15 @@
       border-bottom: 1px solid #c8cdd6;
       box-shadow: 0 1px 3px rgba(0,0,0,0.08);
     }
-    #topbar-row1, #topbar-row2 {
+    #topbar-row1 {
       display: flex;
       align-items: center;
       gap: 8px;
       padding: 0 14px;
     }
-    #topbar-row1 { height: 38px; border-bottom: 1px solid #eef0f4; }
-    #topbar-row2 { height: 30px; background: #f8f9fb; }
+    #topbar-row1 { height: 46px; }
 
-    #topbar h1 { font-size: 13px; font-weight: 600; color: #2c3a50; white-space: nowrap; margin-right: 4px; }
+    #topbar h1 { font-size: 17px; font-weight: 600; color: #2c3a50; white-space: nowrap; margin-right: 4px; }
 
     .btn {
       background: #2c5282;
@@ -342,7 +354,7 @@
 
     #demo-toolbar {
       display: flex;
-      min-height: 46px;
+      min-height: 54px;
       flex-shrink: 0;
       align-items: center;
       justify-content: center;
@@ -352,6 +364,12 @@
       background: #fff;
       box-shadow: 0 1px 3px rgba(0,0,0,0.08);
       z-index: 60;
+    }
+    #demo-toolbar > strong {
+      color: #1f2d40;
+      font-size: 18px;
+      line-height: 1.2;
+      white-space: nowrap;
     }
     #condition-switcher {
       display: flex;
@@ -388,18 +406,6 @@
 
     body.public-demo #vid-sync-bar,
     body.public-demo #annot-bar { display: none; }
-
-    #file-label {
-      color: #5a6478;
-      font-size: 11px;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-      flex: 1;
-      min-width: 0;
-    }
-
-    #stats { color: #6a7488; font-size: 11px; white-space: nowrap; flex-shrink: 0; }
 
     #phase-badge {
       background: #dbeafe;
@@ -863,12 +869,14 @@
   <strong>HITLS Data Explorer</strong>
   <div id="condition-switcher" aria-label="Autonomy condition">
     <span class="condition-label">Condition</span>
-        <button class="condition-btn active" type="button" data-demo-condition="support" aria-pressed="true" onclick="loadDemoScenario('support')">TARS · Support</button>
-        <button class="condition-btn" type="button" data-demo-condition="slow" aria-pressed="false" onclick="loadDemoScenario('slow')">TARP-S · Autonomous slow</button>
+        <button class="condition-btn" type="button" data-demo-condition="support" aria-pressed="false" onclick="loadDemoScenario('support')">TARS · Support · Eye-tracking view</button>
+        <button class="condition-btn active" type="button" data-demo-condition="slow" aria-pressed="true" onclick="loadDemoScenario('slow')">TARP-S · Autonomous slow</button>
         <button class="condition-btn" type="button" data-demo-condition="fast" aria-pressed="false" onclick="loadDemoScenario('fast')">TARP-F · Autonomous fast</button>
   </div>
   <span class="demo-note"></span>
 </div>
+<span id="file-label" hidden>No file loaded</span>
+<span id="stats" hidden></span>
 
 <!-- ── VIDEO DOCK ───────────────────────────────────────────────────────── -->
 <div id="video-dock">
@@ -928,11 +936,8 @@
 
 <!-- ── LEFT PANEL: pilot actions ────────────────────────────────────────── -->
 <div id="left-panel">
-  <div id="left-tabbar">
+  <div id="left-tabbar" role="tablist" aria-label="Pilot and eye-tracking data">
     <button class="tab-btn active" id="tab-plt" onclick="switchLeftTab('plt')">Pilot Actions</button>
-    <button class="tab-btn" id="tab-croll" onclick="switchLeftTab('croll')">Control Roll</button>
-    <button class="tab-btn" id="tab-cpitch" onclick="switchLeftTab('cpitch')">Control Pitch</button>
-    <button class="tab-btn" id="tab-cyaw" onclick="switchLeftTab('cyaw')">Control Yaw</button>
     <button class="tab-btn" id="tab-gaze" onclick="switchLeftTab('gaze')">Gaze AoI</button>
     <button class="tab-btn" id="tab-sacfix" onclick="switchLeftTab('sacfix')">Sac / Fix</button>
     <button class="tab-btn" id="tab-blink" onclick="switchLeftTab('blink')">Blinks</button>
@@ -942,24 +947,6 @@
     <div id="panel-plt" class="chart-panel">
       <div id="plt-scroll">
         <div style="padding:20px;color:#9aa0ae;font-size:11px">Load a CSV to see pilot actions</div>
-      </div>
-    </div>
-    <div id="panel-croll" class="chart-panel hidden">
-      <div class="chart-axis-wrap"><svg id="croll-axis-svg" width="100%" height="28"></svg></div>
-      <div class="chart-scroll" id="croll-scroll">
-        <div style="padding:20px;color:#9aa0ae;font-size:11px">Load a CSV to see control roll</div>
-      </div>
-    </div>
-    <div id="panel-cpitch" class="chart-panel hidden">
-      <div class="chart-axis-wrap"><svg id="cpitch-axis-svg" width="100%" height="28"></svg></div>
-      <div class="chart-scroll" id="cpitch-scroll">
-        <div style="padding:20px;color:#9aa0ae;font-size:11px">Load a CSV to see control pitch</div>
-      </div>
-    </div>
-    <div id="panel-cyaw" class="chart-panel hidden">
-      <div class="chart-axis-wrap"><svg id="cyaw-axis-svg" width="100%" height="28"></svg></div>
-      <div class="chart-scroll" id="cyaw-scroll">
-        <div style="padding:20px;color:#9aa0ae;font-size:11px">Load a CSV to see control yaw</div>
       </div>
     </div>
     <div id="panel-gaze" class="chart-panel hidden">
@@ -1004,17 +991,6 @@
       <h1>Scenario Timeline</h1>
       <span id="vid-auto-hint" style="margin-left:4px;"></span>
     </div>
-    <div id="topbar-row2">
-      <span id="file-label">No file loaded</span>
-      <span id="stats"></span>
-      <label style="font-size:11px;color:#5a6478;white-space:nowrap;margin-left:auto;flex-shrink:0;">
-        UTC offset&nbsp;
-        <input id="utc-offset" type="number" value="-8" min="-14" max="14" step="1"
-          style="width:44px;font-family:inherit;font-size:11px;padding:2px 4px;
-                 border:1px solid #c8cdd6;border-radius:3px;background:#fff;"
-          onchange="rerender()">
-      </label>
-    </div>
   </div>
 
   <div id="scroll-area">
@@ -1033,10 +1009,13 @@
 
 <!-- ── RIGHT PANEL: tabbed charts ──────────────────────────────────────────────── -->
 <div id="right-panel">
-  <div id="chart-tabbar">
+  <div id="chart-tabbar" role="tablist" aria-label="Aircraft and agent data">
     <button class="tab-btn" id="tab-alt" onclick="switchTab('alt')">Altitude</button>
     <button class="tab-btn" id="tab-spd" onclick="switchTab('spd')">Airspeed</button>
     <button class="tab-btn" id="tab-hdg" onclick="switchTab('hdg')">Heading</button>
+    <button class="tab-btn" id="tab-croll" onclick="switchTab('croll')">Control Roll</button>
+    <button class="tab-btn" id="tab-cpitch" onclick="switchTab('cpitch')">Control Pitch</button>
+    <button class="tab-btn" id="tab-cyaw" onclick="switchTab('cyaw')">Control Yaw</button>
     <button class="tab-btn active" id="tab-agt" onclick="switchTab('agt')">Agent</button>
   </div>
 
@@ -1066,6 +1045,26 @@
     </div>
   </div>
 
+  <!-- aircraft control panels -->
+  <div id="panel-croll" class="chart-panel hidden">
+    <div class="chart-axis-wrap"><svg id="croll-axis-svg" width="100%" height="28"></svg></div>
+    <div class="chart-scroll" id="croll-scroll">
+      <div style="padding:20px;color:#9aa0ae;font-size:11px">Load a CSV to see control roll</div>
+    </div>
+  </div>
+  <div id="panel-cpitch" class="chart-panel hidden">
+    <div class="chart-axis-wrap"><svg id="cpitch-axis-svg" width="100%" height="28"></svg></div>
+    <div class="chart-scroll" id="cpitch-scroll">
+      <div style="padding:20px;color:#9aa0ae;font-size:11px">Load a CSV to see control pitch</div>
+    </div>
+  </div>
+  <div id="panel-cyaw" class="chart-panel hidden">
+    <div class="chart-axis-wrap"><svg id="cyaw-axis-svg" width="100%" height="28"></svg></div>
+    <div class="chart-scroll" id="cyaw-scroll">
+      <div style="padding:20px;color:#9aa0ae;font-size:11px">Load a CSV to see control yaw</div>
+    </div>
+  </div>
+
   <!-- agent panel -->
   <div id="panel-agt" class="chart-panel">
     <div id="agt-scroll">
@@ -1085,6 +1084,7 @@ const PX_PER_SEC  = 37.795;  // 1 cm at 96 dpi
 const TICK_MINOR  = 10;       // unlabelled tick every N seconds
 const TICK_MAJOR  = 60;       // labelled tick every N seconds
 const MIN_BAND_PX = 28;       // minimum visual band height; shorter bands are expanded
+const UTC_OFFSET  = -8;       // retained internally after removing the viewer setting
 
 // Background fill per procedure
 const PROC_BG = {
@@ -1575,6 +1575,8 @@ function renderTimeline(text) {
   renderSacfixPanel(sacfixSegs, totalPx, naturalToVisual);
   renderBlinkPanel(blinkSegs, totalPx, naturalToVisual);
   renderPupilChart(pupilRawLocal, totalPx, naturalToVisual);
+  updateOpenChartSizing(_activePanels);
+  updateOpenChartSizing(_activeLeftPanels);
 }
 
 // ── Pupil diameter renderer ─────────────────────────────────────────────────
@@ -1681,10 +1683,9 @@ function fmtSec(sec) {
   return `${pad(m)}:${pad(si)}.${d}`;
 }
 
-// Absolute wall-clock time with configurable UTC offset
+// Absolute wall-clock time for the recorded scenarios
 function fmtEpoch(epochSec) {
-  const offset = parseInt(document.getElementById('utc-offset').value) || 0;
-  const d = new Date((epochSec + offset * 3600) * 1000);
+  const d = new Date((epochSec + UTC_OFFSET * 3600) * 1000);
   return `${pad(d.getUTCHours())}:${pad(d.getUTCMinutes())}:${pad(d.getUTCSeconds())}`;
 }
 
@@ -1783,6 +1784,10 @@ function _renderChartSvg(scroll, pts, gridLines, totalPx, natToVis, colour, empt
   }
   const svg = document.createElementNS(ns, 'svg');
   svg.setAttribute('viewBox', `0 0 ${VW} ${totalPx}`);
+  // Columns can become narrower than the 300-unit chart coordinate system.
+  // Scale only the x-axis so the y-axis remains locked to timeline pixels.
+  svg.setAttribute('preserveAspectRatio',
+    scroll.clientWidth > 0 && scroll.clientWidth >= VW ? 'xMidYMid meet' : 'none');
   svg.setAttribute('width', '100%');
   svg.setAttribute('height', totalPx);
   svg.style.display = 'block';
@@ -1792,6 +1797,7 @@ function _renderChartSvg(scroll, pts, gridLines, totalPx, natToVis, colour, empt
     gl.setAttribute('y1', 0); gl.setAttribute('y2', totalPx);
     gl.setAttribute('stroke', ref ? '#e08080' : '#dde0e8');
     gl.setAttribute('stroke-width', ref ? '1' : '0.5');
+    gl.setAttribute('vector-effect', 'non-scaling-stroke');
     if (ref) gl.setAttribute('stroke-dasharray', '6 4');
     svg.appendChild(gl);
   }
@@ -1803,6 +1809,7 @@ function _renderChartSvg(scroll, pts, gridLines, totalPx, natToVis, colour, empt
   poly.setAttribute('fill', 'none');
   poly.setAttribute('stroke', colour);
   poly.setAttribute('stroke-width', '1.5');
+  poly.setAttribute('vector-effect', 'non-scaling-stroke');
   poly.setAttribute('stroke-linejoin', 'round');
   poly.setAttribute('stroke-linecap', 'round');
   svg.appendChild(poly);
@@ -2614,31 +2621,69 @@ function renderHeadingChart(hdgData, hdg0, totalPx, natToVis) {
 let _pupilRaw = [], _pupilTotalPx = 0, _pupilNatToVis = null;
 
 // ── Panel toggle (independent, multiple can be open simultaneously) ─────────────────────
+const MAX_OPEN_PANELS = 3;
 const _activePanels = new Set(['agt']);
 const _activeLeftPanels = new Set(['plt']);
-function switchLeftTab(id) {
-  if (_activeLeftPanels.has(id)) {
-    _activeLeftPanels.delete(id);
-  } else {
-    _activeLeftPanels.add(id);
-    document.getElementById(id + '-scroll').scrollTop =
-      document.getElementById('scroll-area').scrollTop;
+
+function setPanelOpen(id, open) {
+  document.getElementById('panel-' + id).classList.toggle('hidden', !open);
+  document.getElementById('tab-' + id).classList.toggle('active', open);
+}
+
+function updateOpenChartSizing(activePanels) {
+  requestAnimationFrame(() => {
+    for (const id of activePanels) {
+      const scroll = document.getElementById(id + '-scroll');
+      const svg = scroll && scroll.querySelector(':scope > svg');
+      if (!svg) continue;
+
+      const viewWidth = svg.viewBox.baseVal.width || 300;
+      svg.setAttribute('preserveAspectRatio',
+        scroll.clientWidth < viewWidth ? 'none' : 'xMidYMid meet');
+
+      // Match the fixed axis to the chart's content width, excluding its
+      // vertical scrollbar, without stretching the axis text.
+      const axisSvg = document.getElementById(id + '-axis-svg');
+      if (axisSvg) {
+        axisSvg.style.width = scroll.clientWidth + 'px';
+        axisSvg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
+      }
+    }
+  });
+}
+
+function openPanel(id, activePanels) {
+  if (activePanels.has(id)) {
+    activePanels.delete(id);
+    setPanelOpen(id, false);
+    updateOpenChartSizing(activePanels);
+    return;
   }
-  document.getElementById('panel-' + id).classList.toggle('hidden', !_activeLeftPanels.has(id));
-  document.getElementById('tab-'   + id).classList.toggle('active',  _activeLeftPanels.has(id));
+
+  if (activePanels.size >= MAX_OPEN_PANELS) {
+    const leastRecentlyOpened = activePanels.values().next().value;
+    activePanels.delete(leastRecentlyOpened);
+    setPanelOpen(leastRecentlyOpened, false);
+  }
+
+  activePanels.add(id);
+  setPanelOpen(id, true);
+  document.getElementById(id + '-scroll').scrollTop =
+    document.getElementById('scroll-area').scrollTop;
+  updateOpenChartSizing(activePanels);
+}
+
+function switchLeftTab(id) {
+  openPanel(id, _activeLeftPanels);
 }
 function switchTab(id) {
-  if (_activePanels.has(id)) {
-    _activePanels.delete(id);
-  } else {
-    _activePanels.add(id);
-    // sync scroll position immediately
-    document.getElementById(id + '-scroll').scrollTop =
-      document.getElementById('scroll-area').scrollTop;
-  }
-  document.getElementById('panel-' + id).classList.toggle('hidden', !_activePanels.has(id));
-  document.getElementById('tab-'   + id).classList.toggle('active',  _activePanels.has(id));
+  openPanel(id, _activePanels);
 }
+
+window.addEventListener('resize', () => {
+  updateOpenChartSizing(_activePanels);
+  updateOpenChartSizing(_activeLeftPanels);
+});
 
 // ───────────────────────────────────────────────────────────────────────────────
 // Scroll sync: center timeline ↔ altitude chart
@@ -2957,11 +3002,11 @@ let _natToVis = null;
 // ─────────────────────────────────────────────────────────────────────────────
 const DEMO_SCENARIOS = {
   support: {
-    label: 'TARS · Support',
+    label: 'TARS · Support · Eye-tracking view',
     description: 'Pilot performs; TARS provides support · embedded wind-information error',
     csv: 'support.csv', cockpit: 'support-cockpit.mp4', tars: 'support-tars.mp4',
     cockpitPoster: 'support-cockpit-poster.webp', tarsPoster: 'support-tars-poster.webp',
-    cockpitLabel: 'Smart Eye capture · cockpit camera unavailable',
+    cockpitLabel: 'Smart Eye capture · eye-tracking view',
     timelineOffset: 0,
     annotations: 'support-annotations.json',
   },
@@ -3052,7 +3097,7 @@ window.loadDemoScenario = async function (condition) {
 
 document.addEventListener('DOMContentLoaded', () => {
   const requested = new URLSearchParams(window.location.search).get('condition');
-  loadDemoScenario(DEMO_SCENARIOS[requested] ? requested : 'support');
+  loadDemoScenario(DEMO_SCENARIOS[requested] ? requested : 'slow');
 });
 </script>
 </body>
