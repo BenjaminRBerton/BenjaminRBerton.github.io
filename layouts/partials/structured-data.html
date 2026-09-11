@@ -1,0 +1,73 @@
+{{- $personID := printf "%s#person" site.Home.Permalink -}}
+{{- $sameAs := slice site.Params.github site.Params.linkedin site.Params.orcid site.Params.researchgate -}}
+{{- $person := dict
+  "@type" "Person"
+  "@id" $personID
+  "name" site.Params.name
+  "alternateName" (slice "Benjamin Berton" "Benjamin R. Berton")
+  "url" site.Home.Permalink
+  "image" (strings.TrimPrefix "/" "/images/profile/benjamin-berton.webp" | absURL)
+  "jobTitle" "Human Factors and Cognitive Engineering Researcher"
+  "affiliation" (dict "@type" "Organization" "name" "Polytechnique Montréal" "url" "https://www.polymtl.ca/")
+  "sameAs" $sameAs
+-}}
+{{- $graph := slice -}}
+{{- if .IsHome -}}
+  {{- $graph = $graph | append (dict
+    "@type" "WebSite"
+    "@id" (printf "%s#website" .Permalink)
+    "url" .Permalink
+    "name" site.Title
+    "description" site.Params.description
+    "author" (dict "@id" $personID)
+  ) -}}
+  {{- $graph = $graph | append $person -}}
+{{- else if eq .RelPermalink "/about/" -}}
+  {{- $graph = $graph | append (dict
+    "@type" "ProfilePage"
+    "@id" (printf "%s#profile" .Permalink)
+    "url" .Permalink
+    "name" .Title
+    "description" (.Description | default site.Params.description)
+    "mainEntity" (dict "@id" $personID)
+  ) -}}
+  {{- $graph = $graph | append $person -}}
+{{- else if eq .Section "projects" -}}
+  {{- $workType := cond (ne .Params.github_url "") "SoftwareSourceCode" "CreativeWork" -}}
+  {{- $work := dict
+    "@type" $workType
+    "@id" (printf "%s#project" .Permalink)
+    "name" .Title
+    "url" .Permalink
+    "description" (.Description | default .Params.summary | default site.Params.description)
+    "author" (dict "@id" $personID)
+    "dateCreated" (.Date.Format "2006-01-02")
+    "keywords" (.Params.tags | default (slice))
+  -}}
+  {{- with .Params.github_url }}{{ $work = merge $work (dict "codeRepository" .) }}{{ end -}}
+  {{- $workImage := .Params.social_image | default .Params.hero_image -}}
+  {{- with $workImage }}{{ $work = merge $work (dict "image" (strings.TrimPrefix "/" . | absURL)) }}{{ end -}}
+  {{- $graph = $graph | append $work | append $person -}}
+{{- else if eq .Section "publications" -}}
+  {{- $authors := slice -}}
+  {{- range .Params.authors }}
+    {{- $author := dict "@type" "Person" "name" . -}}
+    {{- if in . "Berton" }}{{ $author = dict "@id" $personID "@type" "Person" "name" . }}{{ end -}}
+    {{- $authors = $authors | append $author -}}
+  {{- end -}}
+  {{- $article := dict
+    "@type" "ScholarlyArticle"
+    "@id" (printf "%s#article" .Permalink)
+    "headline" .Title
+    "url" .Permalink
+    "description" (.Description | default .Params.summary | default site.Params.description)
+    "datePublished" (.Date.Format "2006-01-02")
+    "author" $authors
+    "isPartOf" (dict "@type" "Periodical" "name" .Params.journal)
+  -}}
+  {{- with .Params.doi }}{{ $article = merge $article (dict "sameAs" (printf "https://doi.org/%s" .)) }}{{ end -}}
+  {{- $graph = $graph | append $article | append $person -}}
+{{- end -}}
+{{- with $graph }}
+<script type="application/ld+json">{{ dict "@context" "https://schema.org" "@graph" . | jsonify | safeJS }}</script>
+{{- end }}

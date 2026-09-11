@@ -1,12 +1,12 @@
 ---
 title: "Benjamin Rémi Berton"
 description: "Human factors and cognitive engineering research on human–autonomy teaming in aviation."
-intro: "Currently a PhD candidate in cognitive engineering at Polytechnique Montréal under the supervision of [Philippe Doyon-Poulin](https://www.polymtl.ca/expertises/en/doyon-poulin-philippe). My research interest involves the design and evaluation of Human-Autonomy teams."
+intro: "I am a PhD candidate in cognitive engineering at Polytechnique Montréal, working under the supervision of [Philippe Doyon-Poulin](https://www.polymtl.ca/expertises/en/doyon-poulin-philippe). I design and evaluate human–autonomy teams for aviation through cognitive modelling and human-in-the-loop simulation."
 profile_image: "/images/profile/benjamin-berton.webp"
 profile_image_alt: "Portrait of Benjamin Rémi Berton outdoors"
 showcase:
   eyebrow: "Featured projects"
-  heading: ""
+  heading: "Featured research projects"
   intro: ""
   interval: 8000
   slides:
@@ -36,7 +36,7 @@ showcase:
       eyebrow: "Multimodal human-factors assessment"
       summary: "A methodology combining physical, physiological, and cognitive measures to evaluate head-mounted augmented reality."
       media_type: "image"
-      media_src: "/images/projects/augmented-reality/clutter_maps.gif"
+      media_src: "/images/projects/augmented-reality/clutter-maps-poster.webp"
       media_alt: "Animated visual-clutter analysis showing cockpit footage, a feature-congestion map, and evolving clutter scores"
       media_fit: "contain"
       href: "/projects/augmented-reality-assessment/"

@@ -1,7 +1,11 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-{{- $description := .Description | default .Params.summary | default site.Params.description -}}
-{{- $title := cond .IsHome site.Title (printf "%s — %s" .Title site.Params.name) -}}
+{{- $description := .Description | default .Params.summary | default site.Params.description | plainify -}}
+{{- $title := site.Title -}}
+{{- if not .IsHome }}
+  {{- $title = printf "%s — %s" .Title site.Params.name -}}
+  {{- with .Params.seo_title }}{{ $title = . }}{{ end -}}
+{{- end -}}
 <title>{{ $title }}</title>
 <meta name="description" content="{{ $description }}">
 <link rel="canonical" href="{{ .Permalink }}">
@@ -9,9 +13,28 @@
 <meta property="og:description" content="{{ $description }}">
 <meta property="og:type" content="{{ if .IsPage }}article{{ else }}website{{ end }}">
 <meta property="og:url" content="{{ .Permalink }}">
-{{- $image := .Params.hero_image | default .Params.image | default site.Params.socialImage -}}
+<meta property="og:site_name" content="{{ site.Params.name }}">
+<meta property="og:locale" content="{{ replace site.Language.Locale "-" "_" }}">
+{{- $image := .Params.social_image | default .Params.hero_image | default .Params.image | default site.Params.socialImage -}}
+{{- $imageAlt := .Params.social_image_alt | default .Params.hero_alt | default .Params.image_alt | default site.Params.socialImageAlt -}}
 {{ with $image }}<meta property="og:image" content="{{ strings.TrimPrefix "/" . | absURL }}">{{ end }}
+{{ with $imageAlt }}<meta property="og:image:alt" content="{{ . }}">{{ end }}
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{{ $title }}">
+<meta name="twitter:description" content="{{ $description }}">
+{{ with $image }}<meta name="twitter:image" content="{{ strings.TrimPrefix "/" . | absURL }}">{{ end }}
+{{ with $imageAlt }}<meta name="twitter:image:alt" content="{{ . }}">{{ end }}
+{{- if eq .Section "publications" }}
+<meta name="citation_title" content="{{ .Title }}">
+{{- range .Params.authors }}
+<meta name="citation_author" content="{{ . }}">
+{{- end }}
+{{ with .Date }}<meta name="citation_publication_date" content="{{ .Format "2006/01/02" }}">{{ end }}
+{{ with .Params.journal }}<meta name="citation_journal_title" content="{{ . }}">{{ end }}
+{{ with .Params.doi }}<meta name="citation_doi" content="{{ . }}">{{ end }}
+{{ with .Params.pdf }}<meta name="citation_pdf_url" content="{{ strings.TrimPrefix "/" . | absURL }}">{{ end }}
+{{- end }}
+{{ partial "structured-data.html" . }}
 <link rel="icon" href="{{ "favicon/favicon.svg" | relURL }}" type="image/svg+xml">
 {{ with .OutputFormats.Get "RSS" }}<link rel="alternate" type="application/rss+xml" href="{{ .RelPermalink }}" title="{{ site.Title }}">{{ end }}
 {{- $css := resources.Get "css/main.css" | minify | fingerprint -}}

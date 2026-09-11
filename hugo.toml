@@ -3,11 +3,12 @@ locale = "en-CA"
 title = "Benjamin Rémi Berton — Human Factors & Cognitive Engineering"
 enableRobotsTXT = true
 summaryLength = 30
+disableKinds = ["taxonomy", "term"]
 
 [params]
   name = "Benjamin Rémi Berton"
   description = "Human factors and cognitive engineering research on human–autonomy teaming in aviation."
-  tagline = ""
+  tagline = "Aviation human factors researcher"
   email = "benjaminberton64@gmail.com"
   github = "https://github.com/BenjaminRBerton"
   linkedin = "https://www.linkedin.com/in/benjamin-remi-berton/"
@@ -15,7 +16,8 @@ summaryLength = 30
   researchgate = "https://www.researchgate.net/profile/Benjamin-Berton-5"
   institution = ""
   institutionLabel = ""
-  socialImage = "/images/social-preview.svg"
+  socialImage = "/images/social-preview.png"
+  socialImageAlt = "Benjamin Rémi Berton — human factors and cognitive engineering"
 
 [menus]
   [[menus.main]]
@@ -27,12 +29,13 @@ summaryLength = 30
     pageRef = "/publications"
     weight = 20
   [[menus.main]]
+    name = "About"
+    pageRef = "/about"
+    weight = 25
+  [[menus.main]]
     name = "CV"
     pageRef = "/cv"
     weight = 30
-[taxonomies]
-  tag = "tags"
-
 [markup]
   [markup.goldmark]
     [markup.goldmark.renderer]

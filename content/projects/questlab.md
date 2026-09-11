@@ -1,6 +1,8 @@
 ---
 title: "QuestLab"
-subtitle: "A lightweight, platform for running questionnaire batteries in human-factors experiments."
+seo_title: "QuestLab: Research Questionnaire Software | Benjamin Berton"
+description: "Open-source, multilingual questionnaire software for NASA-TLX, SUS, interviews, and human-in-the-loop laboratory experiments."
+subtitle: "A lightweight platform for running questionnaire batteries in human-factors experiments."
 date: 2026-06-09
 year: 2026
 project_type: "Research software"
@@ -13,7 +15,9 @@ tags:
   - "Human In The Loop Experiments"
 role: "Designer and developer"
 summary: "A configurable multilingual questionnaire platform designed for reliable data collection during in-lab studies."
-hero_image: "/images/projects/questlab/questlab.gif"
+hero_image: "/images/projects/questlab/readme.webp"
+social_image: "/images/projects/questlab/screenshot-1.png"
+social_image_alt: "QuestLab experiment and condition selection interface"
 hero_alt: "QuestLab documentation showing its local-first questionnaire workflow and project structure"
 hero_position: "top"
 external_url: ""

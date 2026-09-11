@@ -1,6 +1,6 @@
 ---
 title: "About"
-draft: true
+draft: false
 description: "Biography, research interests, and contact information for Benjamin Rémi Berton."
 subtitle: "Human factors research at the intersection of aviation, cognition, and autonomous systems."
 ---
