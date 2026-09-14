@@ -82,6 +82,17 @@
                     data-feature-video></video>
                 </div>
               </div>
+            {{ else if eq $slide.media_type "video" }}
+              <video
+                src="{{ strings.TrimPrefix "/" $slide.media_src | relURL }}"
+                poster="{{ strings.TrimPrefix "/" $slide.media_poster | relURL }}"
+                aria-label="{{ $slide.media_alt }}"
+                muted
+                loop
+                playsinline
+                preload="metadata"
+                controls
+                data-feature-video></video>
             {{ else if eq $slide.media_type "iframe" }}
               <iframe
                 src="{{ strings.TrimPrefix "/" $slide.media_src | relURL }}{{ with $slide.media_query }}{{ . }}{{ end }}"

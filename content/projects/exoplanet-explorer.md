@@ -17,7 +17,7 @@ hero_image: "/images/projects/exoplanet-explorer/exoplanet-explorer-thumbnail.pn
 hero_alt: "Videogame starting menu and splashscreen"
 hero_position: "center"
 hero_fit: "contain"
-card_image: "/images/projects/exoplanet-explorer/exoplanet-explorer-thumbnail.png"
+card_image: "/images/projects/exoplanet-explorer/gifs/level4-gameplay-preview.gif"
 card_position: "center"
 card_fit: "cover"
 external_url: "https://doi.org/10.5281/zenodo.18651448"

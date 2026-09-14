@@ -16,6 +16,7 @@ tags:
 role: "Designer and developer"
 summary: "A configurable multilingual questionnaire platform designed for reliable data collection during in-lab studies."
 hero_image: "/images/projects/questlab/questlab-hero.gif"
+card_image: "/images/projects/questlab/questlab-hero.gif"
 social_image: "/images/projects/questlab/screenshot-1.png"
 social_image_alt: "QuestLab experiment and condition selection interface"
 hero_alt: "QuestLab documentation showing its local-first questionnaire workflow and project structure"

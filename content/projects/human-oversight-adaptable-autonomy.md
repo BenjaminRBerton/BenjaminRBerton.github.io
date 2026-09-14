@@ -18,7 +18,7 @@ hero_image: "/images/projects/human-oversight-adaptable-autonomy/tars-hitls-trai
 hero_alt: "Annotated flight-simulator study setup with the TARS tablet, Smart Eye Pro eye tracking, and video cameras"
 hero_position: "center"
 hero_fit: "contain"
-card_image: "/images/projects/human-oversight-adaptable-autonomy/simulator-setup.webp"
+card_image: "/images/projects/human-oversight-adaptable-autonomy/tars-hitls-trailer-hero.gif"
 card_position: "center"
 card_fit: "contain"
 external_url: "/projects/human-oversight-adaptable-autonomy/timeline/"
