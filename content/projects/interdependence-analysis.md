@@ -13,7 +13,7 @@ tags:
   - "Python"
 role: "Designer and developer"
 summary: "A web editor and visual-analysis environment that helps researchers apply Interdependence Analysis without relying on spreadsheets."
-hero_image: "/images/projects/interdependence-analysis/screenshot-thumbnail.png"
+hero_image: "/images/projects/interdependence-analysis/ia-table-hero.gif"
 social_image: "/images/projects/interdependence-analysis/screenshot-thumbnail.png"
 hero_alt: "Interdependence Analysis application showing the analysis table and workflow graph"
 hero_position: "center"

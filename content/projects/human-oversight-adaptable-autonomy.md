@@ -14,7 +14,7 @@ tags:
   - "Aviation Human Factors"
 role: "Lead researcher and experimental designer"
 summary: "A study with 18 professional pilots examining how autonomy level, execution timing, and pilot-configured allocation affect oversight in a demanding flight-deck scenario."
-hero_image: "/images/projects/human-oversight-adaptable-autonomy/simulator-setup.webp"
+hero_image: "/images/projects/human-oversight-adaptable-autonomy/tars-hitls-trailer-hero.gif"
 hero_alt: "Annotated flight-simulator study setup with the TARS tablet, Smart Eye Pro eye tracking, and video cameras"
 hero_position: "center"
 hero_fit: "contain"

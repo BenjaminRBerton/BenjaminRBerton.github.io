@@ -14,7 +14,7 @@ tags:
   - "Aviation"
 role: "Human-factors researcher and study engineer"
 summary: "A methodology combining physical, visual, attentional, cognitive, and subjective measures to assess head-mounted augmented reality in constrained environments."
-hero_image: "/images/projects/augmented-reality/clutter-maps-poster.webp"
+hero_image: "/images/projects/augmented-reality/clutter-maps-hero.gif"
 hero_alt: "Head-mounted augmented-reality symbology overlaid on the view from an aircraft cockpit"
 hero_position: "center"
 hero_fit: "contain"
