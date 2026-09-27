@@ -21,7 +21,7 @@
 <section class="home-section home-showcase page-shell" aria-labelledby="project-showcase-heading">
   <div class="home-showcase__heading">
     <div>
-      <p class="eyebrow">{{ .eyebrow | default "Project showcase" }}</p>
+      <p class="eyebrow">{{ .eyebrow | default "" }}</p>
       <h2 id="project-showcase-heading">{{ .heading }}</h2>
       {{ with .intro }}<p class="lede">{{ . }}</p>{{ end }}
     </div>

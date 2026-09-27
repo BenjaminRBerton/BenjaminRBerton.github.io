@@ -3,7 +3,7 @@ title: "Human Oversight of Adaptable Flight-Deck Autonomy"
 subtitle: "A human-in-the-loop study of how function allocation, action timing, and pilot configuration shape effective oversight."
 date: 2026-09-08
 year: 2026
-project_type: "Human-in-the-loop simulation study"
+project_type: ""
 status: ""
 featured: true
 story_layout: true
@@ -12,7 +12,7 @@ tags:
   - "Adaptable Autonomy"
   - "Function Allocation"
   - "Aviation Human Factors"
-role: "Lead researcher and experimental designer"
+role: "Lead researcher"
 summary: "A study with 18 professional pilots examining how autonomy level, execution timing, and pilot-configured allocation affect oversight in a demanding flight-deck scenario."
 hero_image: "/images/projects/human-oversight-adaptable-autonomy/tars-hitls-trailer-hero.gif"
 hero_alt: "Annotated flight-simulator study setup with the TARS tablet, Smart Eye Pro eye tracking, and video cameras"

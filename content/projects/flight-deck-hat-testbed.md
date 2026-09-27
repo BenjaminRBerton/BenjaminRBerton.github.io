@@ -3,8 +3,8 @@ title: "Human–Autonomy Teaming Flight-Deck Simulation Framework"
 subtitle: ""
 date: 2025-07-09
 year: 2025
-project_type: "Doctoral research · simulation framework"
-status: "Ongoing research"
+project_type: ""
+status: ""
 featured: true
 story_layout: true
 tags:

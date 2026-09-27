@@ -8,7 +8,7 @@ disableKinds = ["taxonomy", "term"]
 [params]
   name = "Benjamin Rémi Berton"
   description = "Human factors and cognitive engineering research on human–autonomy teaming in aviation."
-  tagline = "Aviation human factors researcher"
+  tagline = ""
   email = "benjaminberton64@gmail.com"
   github = "https://github.com/BenjaminRBerton"
   linkedin = "https://www.linkedin.com/in/benjamin-remi-berton/"

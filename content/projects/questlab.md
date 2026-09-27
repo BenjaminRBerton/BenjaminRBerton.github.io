@@ -5,8 +5,8 @@ description: "Open-source, multilingual questionnaire software for NASA-TLX, SUS
 subtitle: "A lightweight platform for running questionnaire batteries in human-factors experiments."
 date: 2026-06-09
 year: 2026
-project_type: "Research software"
-status: "Open source"
+project_type: ""
+status: "Open source (MIT Licence)"
 featured: false
 tags:
   - "Experiment Tools"
@@ -14,7 +14,7 @@ tags:
   - "Flask"
   - "Human In The Loop Experiments"
 role: "Designer and developer"
-summary: "A configurable multilingual questionnaire platform designed for reliable data collection during in-lab studies."
+summary: "A configurable multilingual questionnaire platform for data collection during in-lab studies."
 hero_image: "/images/projects/questlab/questlab-hero.gif"
 card_image: "/images/projects/questlab/questlab-hero.gif"
 social_image: "/images/projects/questlab/screenshot-1.png"

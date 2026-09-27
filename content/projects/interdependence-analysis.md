@@ -3,8 +3,8 @@ title: "Interdependence Analysis Dashboard"
 subtitle: "An interactive tool for modelling and evaluating human–autonomy teams."
 date: 2026-06-01
 year: 2025
-project_type: "Research software"
-status: "Open source · active development"
+project_type: ""
+status: "Released under MIT licence"
 featured: true
 tags:
   - "Human–Autonomy Teaming"

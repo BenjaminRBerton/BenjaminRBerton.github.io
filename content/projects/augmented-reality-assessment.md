@@ -3,8 +3,8 @@ title: "Assessing Augmented Reality in Constrained Environments"
 subtitle: "A methodology for evaluating the physical, physiological, and cognitive effects of head-mounted displays in operational settings."
 date: 2023-10-10
 year: 2023
-project_type: "Applied human-factors research"
-status: "Published research"
+project_type: ""
+status: ""
 featured: true
 story_layout: true
 tags:

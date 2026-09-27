@@ -2,9 +2,9 @@
 title: "Exoplanet Explorer"
 subtitle: "An open-source educational videogame for learning and studying human–autonomy teaming."
 date: 2026-01-01
-year: 2025-2026
-project_type: "Videogame · research and teaching resource"
-status: "Open source · active development"
+year: 2024-2026
+project_type: ""
+status: "Released under MIT License"
 featured: true
 tags:
   - "Human–Autonomy Teaming"
