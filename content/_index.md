@@ -2,7 +2,7 @@
 title: "Benjamin Rémi Berton"
 description: "Human factors and cognitive engineering research on human–autonomy teaming in aviation."
 intro: "I am a PhD candidate in cognitive engineering at Polytechnique Montréal, working under the supervision of [Philippe Doyon-Poulin](https://www.polymtl.ca/expertises/en/doyon-poulin-philippe). I design and evaluate human–autonomy teams for aviation through cognitive modelling and human-in-the-loop simulation."
-profile_image: "/images/profile/benjamin-berton.webp"
+profile_image: "/images/profile/planeur.JPG"
 profile_image_alt: "Portrait of Benjamin Rémi Berton outdoors"
 showcase:
   eyebrow: ""
