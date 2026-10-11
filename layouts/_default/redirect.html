@@ -1,0 +1,17 @@
+<!doctype html>
+<html lang="{{ site.Language.Locale | default "en-CA" }}">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noindex">
+    <meta http-equiv="refresh" content="0; url={{ .Params.redirect_url | safeURL }}">
+    <link rel="canonical" href="{{ .Params.redirect_url | absURL }}">
+    <title>{{ .Title }} | {{ site.Title }}</title>
+    <script>
+      window.location.replace({{ .Params.redirect_url | jsonify | safeJS }});
+    </script>
+  </head>
+  <body>
+    <p>Redirecting to <a href="{{ .Params.redirect_url | safeURL }}">Exoplanet Explorer</a>…</p>
+  </body>
+</html>

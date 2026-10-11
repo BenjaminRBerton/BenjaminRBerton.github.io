@@ -47,10 +47,10 @@
 }
 
 :root {
-  --background: #fdfcf8;
+  --background: #fff;
   --surface: #ebe8e1;
   --foreground: #18201d;
-  --muted: #626b66;
+  --muted: #424443;
   --border: #c9ccc5;
   --accent: #005f56;
   --accent-dark: #00463f;
