@@ -20,10 +20,14 @@ hero_fit: "contain"
 card_image: "/images/projects/exoplanet-explorer/gifs/level4-gameplay-preview.gif"
 card_position: "center"
 card_fit: "cover"
-external_url: "https://doi.org/10.5281/zenodo.18651448"
-external_label: "Download the released version"
+external_url: "https://github.com/BenjaminRBerton/Exoplanet-Explorer/releases/tag/v1.2.1"
+external_label: "View the v1.2.1 release"
 github_url: "https://github.com/BenjaminRBerton/Exoplanet-Explorer"
 publication_url: ""
+downloads:
+  windows: "https://github.com/BenjaminRBerton/Exoplanet-Explorer/releases/download/v1.2.1/Windows.zip"
+  linux: "https://github.com/BenjaminRBerton/Exoplanet-Explorer/releases/download/v1.2.1/Linux.zip"
+  macos: "https://github.com/BenjaminRBerton/Exoplanet-Explorer/releases/download/v1.2.1/Mac.zip"
 related_publications: []
 related_conferences:
   - "aspire-2026"
@@ -69,11 +73,13 @@ I designed and developed the game in Godot using C#. It supports multiple maps a
 
 {{< image src="/images/projects/exoplanet-explorer/gifs/2_3_rover_planning_and_executing_path_towards_monolith_and_winning.gif" alt="A rover planning and following a route to the monolith to complete the mission" caption="The robot plans and executes its route toward the mission objective while the player supervises its progress." >}}
 
-The source is released under the MIT License. Version 1.0.0 is archived through Zenodo with DOI [10.5281/zenodo.18651448](https://doi.org/10.5281/zenodo.18651448).
+The source is released under the MIT License. Version 1.0.0 is permanently archived through Zenodo with DOI [10.5281/zenodo.18651448](https://doi.org/10.5281/zenodo.18651448).
 
 ## Releases
 
-Permanent release information is available through Zenodo. Platform-specific Windows and Linux download buttons will be added here
+Version 1.2.1, the Fall 2026 release, adds guided tutorials, new missions, enhanced autonomous planning, and a complete monolith-fragment analysis minigame. Pre-built downloads are available for Windows, macOS, and Linux below, and the [full release notes are available on GitHub](https://github.com/BenjaminRBerton/Exoplanet-Explorer/releases/tag/v1.2.1).
+
+After downloading the archive for your platform, extract the complete archive and launch the Exoplanet Explorer executable without changing the extracted folder structure.
 
 ## Gameplay
 
