@@ -20,8 +20,6 @@ hero_fit: "contain"
 card_image: "/images/projects/exoplanet-explorer/gifs/level4-gameplay-preview.gif"
 card_position: "center"
 card_fit: "cover"
-external_url: "https://github.com/BenjaminRBerton/Exoplanet-Explorer/releases/tag/v1.2.1"
-external_label: "View the v1.2.1 release"
 github_url: "https://github.com/BenjaminRBerton/Exoplanet-Explorer"
 publication_url: ""
 downloads:
@@ -32,6 +30,8 @@ related_publications: []
 related_conferences:
   - "aspire-2026"
 ---
+
+{{< button href="#downloads-heading" label="DOWNLOAD" size="large" >}}
 
 ## Overview
 
@@ -80,6 +80,8 @@ The source is released under the MIT License. Version 1.0.0 is permanently archi
 Version 1.2.1, the Fall 2026 release, adds guided tutorials, new missions, enhanced autonomous planning, and a complete monolith-fragment analysis minigame. Pre-built downloads are available for Windows, macOS, and Linux below, and the [full release notes are available on GitHub](https://github.com/BenjaminRBerton/Exoplanet-Explorer/releases/tag/v1.2.1).
 
 After downloading the archive for your platform, extract the complete archive and launch the Exoplanet Explorer executable without changing the extracted folder structure.
+
+**macOS note:** The app is not signed and notarized by an Apple-identified developer, so macOS may prevent it from opening initially. If this happens, open **System Settings → Privacy & Security**, find the message about Exoplanet Explorer, and select **Open Anyway**. Only bypass this warning if you downloaded the app from the official release linked on this page.
 
 ## Gameplay
 
