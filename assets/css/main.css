@@ -814,6 +814,10 @@ pre code {
   font-size: clamp(2.8rem, 6vw, 5.2rem);
 }
 
+.project-hero .button-row {
+  align-items: center;
+}
+
 .project-hero__media {
   margin: 0;
   overflow: hidden;

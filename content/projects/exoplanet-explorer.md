@@ -20,6 +20,9 @@ hero_fit: "contain"
 card_image: "/images/projects/exoplanet-explorer/gifs/level4-gameplay-preview.gif"
 card_position: "center"
 card_fit: "cover"
+external_url: "#downloads-heading"
+external_label: "DOWNLOAD"
+external_emphasis: true
 github_url: "https://github.com/BenjaminRBerton/Exoplanet-Explorer"
 publication_url: ""
 downloads:
@@ -30,8 +33,6 @@ related_publications: []
 related_conferences:
   - "aspire-2026"
 ---
-
-{{< button href="#downloads-heading" label="DOWNLOAD" size="large" >}}
 
 ## Overview
 

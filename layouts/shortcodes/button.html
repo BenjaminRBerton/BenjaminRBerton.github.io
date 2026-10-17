@@ -2,4 +2,4 @@
 {{- if strings.HasPrefix $href "/" -}}
   {{- $href = strings.TrimPrefix "/" $href | relURL -}}
 {{- end -}}
-<a class="button{{ if eq (.Get "style") "quiet" }} button--quiet{{ end }}{{ if eq (.Get "size") "large" }} button--large{{ end }}" href="{{ $href }}">{{ .Get "label" }}{{ if .Get "external" }} ↗{{ end }}</a>
+<a class="button{{ if eq (.Get "style") "quiet" }} button--quiet{{ end }}" href="{{ $href }}">{{ .Get "label" }}{{ if .Get "external" }} ↗{{ end }}</a>
